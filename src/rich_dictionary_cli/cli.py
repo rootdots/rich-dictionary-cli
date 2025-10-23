@@ -48,7 +48,7 @@ console = Console()
 # 1. Initialize the Typer application instance globally
 app = typer.Typer(
     name="rich-dictionary-cli",
-    help="A rich, synchronous dictionary lookup tool.",  # Updated description
+    help="A rich, synchronous dictionary lookup tool.",
 )
 
 
@@ -85,7 +85,6 @@ def fetch_word_data(word: str) -> APIResponse:
     except httpx.HTTPStatusError as e:
         # Handle 404 Not Found specifically, and other HTTP errors generally
         if e.response.status_code == 404:
-            # Replaced markup with Text.assemble()
             console.print(
                 Text.assemble(
                     Text("Error:", style="bold red"),
@@ -96,7 +95,6 @@ def fetch_word_data(word: str) -> APIResponse:
                 style="red",
             )
         else:
-            # Replaced markup with Text.assemble()
             console.print(
                 Text.assemble(
                     Text(f"HTTP-error {e.response.status_code}:", style="bold red"),
@@ -150,7 +148,6 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
     """
     word_upper: str = word.upper()
 
-    # Replaced markup strings with Text.assemble() for Panel content and title
     word_text = Text.assemble(
         Text("WORD:", style="bold magenta"), " ", Text(word_upper, style="bold yellow")
     )
@@ -164,7 +161,6 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
     for entry in data:
         phonetic: str | None = entry.get("phonetic")
         if phonetic:
-            # Replaced markup with Text.assemble()
             console.print(Text.assemble("  Uttal: ", Text(phonetic, style="italic")))
 
         # Iterate over each meaning (part of speech)
@@ -176,7 +172,7 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
                 # Create a rich.Text buffer to build the panel content
                 panel_content: Text = Text()
 
-                # Add the part of speech as a header (already uses Style object)
+                # Add the part of speech as a header
                 _ = panel_content.append(
                     f"{part_of_speech.capitalize()}\n",
                     style=Style(color="cyan", bold=True, underline=True),
@@ -185,22 +181,20 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
                 # List the definitions
                 for i, definition_data in enumerate(definitions, 1):
                     definition: str = definition_data.get(
-                        "definition", "Ingen definition tillgänglig."
+                        "definition", "No definition available."
                     )
                     example: str | None = definition_data.get("example")
 
-                    # 1. Add the definition text (already uses Style object)
+                    # 1. Add the definition text
                     _ = panel_content.append(f"\n{i}. ", style="bold white")
                     _ = panel_content.append(definition)
 
                     # 2. Add example, if available
                     if example:
-                        # Display element in Swedish (Exempel)
-                        _ = panel_content.append("\n    Exempel: ", style="dim")
+                        _ = panel_content.append("\n    Example: ", style="dim")
                         _ = panel_content.append(f'"{example}"', style="italic")
 
                 # Print the content inside a Panel
-                # Replaced markup with Text object for Panel title
                 panel_title = Text(part_of_speech.capitalize(), style="yellow")
 
                 console.print(
@@ -214,7 +208,6 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
                 )
 
 
-# 2. The main command is now synchronous, eliminating async conflicts.
 @app.command()
 def main(
     # Use Annotated for cleaner Typer argument definition.
@@ -235,10 +228,8 @@ def main(
     int
         The exit code (0 for success, 1 for failure).
     """
-    # Call the synchronous fetch function
     data: APIResponse = fetch_word_data(word)
 
-    # Use match statement (Python 3.10+) for flow control
     match data:
         case None:
             # Error was handled and printed inside fetch_word_data
@@ -249,8 +240,6 @@ def main(
             return 0
         case _:
             # Catches unexpected scenarios (e.g., an empty list or malformed data that wasn't None)
-
-            # Replaced markup with Text.assemble() for safe printing in the final error message
             console.print(
                 Text.assemble(
                     Text("Fel:", style="bold red"),
@@ -262,10 +251,8 @@ def main(
             return 1
 
 
-# 3. Define a synchronous wrapper function for entry point tools (like 'uv run')
 def cli() -> None:
     """Synchronous entry point that runs the Typer application instance."""
-    # This remains the same as the app is now fully synchronous.
     app()
 
 
