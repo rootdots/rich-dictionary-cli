@@ -1,4 +1,4 @@
-# 📚 Rich Dictionary CLI (Command Line Dictionary Tool)
+# 📚 Rich Dictionary CLI
 
 This is a fast and robust command-line tool for looking up English definitions directly in the terminal. The application uses the public [Dictionary API](https://dictionaryapi.dev/) for data and leverages the **Typer** and **Rich** libraries to deliver a modern, typed, and visually appealing interface.
 
