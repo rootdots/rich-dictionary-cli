@@ -1,3 +1,9 @@
+## 0.1.3 (2025-10-24)
+
+### Fix
+
+- **cli**: translations of messages
+
 ## 0.1.2 (2025-10-24)
 
 ### Fix
