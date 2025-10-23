@@ -84,3 +84,17 @@ $ which rd
 ```
 
 The application can now be run directly from any terminal using the command `rd`.
+
+### Uninstalling
+
+Uninstall by running
+
+```bash
+$ uv tool uninstall rich_dictionary_cli
+```
+
+which will give you this message if uninstalled successfully
+
+```text
+Uninstalled 1 executable: rd
+```
