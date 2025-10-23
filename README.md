@@ -85,6 +85,34 @@ $ which rd
 
 The application can now be run directly from any terminal using the command `rd`.
 
+#### Example
+
+```text
+$ rd hamburger
+╭─ Dictionary search ──────────────────────────────────────────────╮
+│ WORD: HAMBURGER                                                  │
+╰──────────────────────────────────────────────────────────────────╯
+ Pronunciation: /ˈhæm.bə.ɡə/
+╭─ Noun ───────────────────────────────────────────────────────────╮
+│                                                                  │
+│  Noun                                                            │
+│                                                                  │
+│  1. A hot sandwich consisting of a patty of cooked ground beef   │
+│  or a meat substitute, in a sliced bun, sometimes also           │
+│  containing salad vegetables, condiments, or both.               │
+│  2. The patty used in such a sandwich.                           │
+│  3. Ground beef, especially that intended to be made into        │
+│  hamburgers.                                                     │
+│  4. (somewhat crude) An animal or human, or the flesh thereof,   │
+│  that has been badly injured as a result of an accident or       │
+│  conflict.                                                       │
+│      Example: "I'm going to make you into hamburger if you do    │
+│  that again."                                                    │
+│  5. A hamburger button.                                          │
+│                                                                  │
+╰──────────────────────────────────────────────────────────────────╯
+```
+
 ### Uninstalling
 
 Uninstall by running
