@@ -161,11 +161,13 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
     for entry in data:
         phonetic: str | None = entry.get("phonetic")
         if phonetic:
-            console.print(Text.assemble("  Uttal: ", Text(phonetic, style="italic")))
+            console.print(
+                Text.assemble(" Pronunciation: ", Text(phonetic, style="italic"))
+            )
 
         # Iterate over each meaning (part of speech)
         for meaning in entry.get("meanings", []):
-            part_of_speech: str = meaning.get("partOfSpeech", "okänd ordklass")
+            part_of_speech: str = meaning.get("partOfSpeech", "unknown word class")
             definitions: list[Definition] = meaning.get("definitions", [])
 
             if definitions:
