@@ -244,7 +244,7 @@ def main(
             # Catches unexpected scenarios (e.g., an empty list or malformed data that wasn't None)
             console.print(
                 Text.assemble(
-                    Text("Fel:", style="bold red"),
+                    Text("Error:", style="bold red"),
                     " Received an unexpected data-format for '",
                     Text(word, style="yellow"),
                     "'.",
