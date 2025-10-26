@@ -42,10 +42,8 @@ APIResponse: TypeAlias = list[WordEntry] | None
 
 # --- Global Instances ---
 
-# Typer relies on rich, so we use the Console instance for output.
 console = Console()
 
-# 1. Initialize the Typer application instance globally
 app = typer.Typer(
     name="rich-dictionary-cli",
     help="A rich, synchronous dictionary lookup tool.",
@@ -145,6 +143,7 @@ def display_word_data(word: str, data: list[WordEntry]) -> None:
         The original word searched.
     data : list[WordEntry]
         The list of word entries returned from the API.
+
     """
     word_upper: str = word.upper()
 
@@ -229,6 +228,7 @@ def main(
     -------
     int
         The exit code (0 for success, 1 for failure).
+
     """
     data: APIResponse = fetch_word_data(word)
 
